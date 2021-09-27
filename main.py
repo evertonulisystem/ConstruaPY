@@ -1,33 +1,107 @@
-#1 - import bibliotecas
+# 1 - imports - bibliotecas
 import pytest
 
-#2 class - classe
 
-#3 definitions metods e funções
+# 2 - class - classe
+
+# 3 - definitions - definições = métodos e funções
 def print_hi(name):
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    print(f'Oi, {name}')
+
 
 def somar(numero1, numero2):
     return numero1 + numero2
+
+
 def subtrair(numero1, numero2):
-    return numero1 + numero2
+    return numero1 / numero2  # bug!!
+
+
 def multiplicar(numero1, numero2):
-    return numero1 + numero2
+    return numero1 * numero2
+
+
 def dividir(numero1, numero2):
     if numero2 != 0:
         return numero1 / numero2
-def test_somar():
-    assert somar(2,2) == 4
+    else:
+        return 'Não dividirás por zero'
+
+
+# Testes Unitarios / Teste de Unidades
+
+# teste da função de somar
+def test_somar_didatico():
+    # 1 - Configura / Prepara
+    numero1 = 8  # input / entrada
+    numero2 = 5  # input / entrada
+    resultado_esperado = 13  # output / saida
+    # 2 - Executa
+    resultado_atual = somar(numero1, numero2)
+    # 3 - Check / Valida
+    assert resultado_atual == resultado_esperado
+
+
+@pytest.mark.parametrize('numero1,numero2,resultado', [
+    # valores
+    (5, 4, 9),  # teste 1
+    (3, 2, 5),  # teste 2
+    (10, 6, 16),  # teste 4
+    (20, 6, 26),  # teste 5
+    (30, 6, 36),  # teste 6
+    (5, 4, 9),  # teste 1
+    (3, 2, 5),  # teste 2
+    (10, 6, 25),  # teste 4
+    (20, 6, 26),  # teste 5
+    (30, 6, 36),  # teste 6
+
+])
+def test_somar(numero1, numero2, resultado):
+    assert somar(numero1, numero2) == resultado
+
+
+def test_somar_resultado_negativo():
+    assert somar(-1000, -2000) == -3000
+
+
 def test_subtrair():
-    assert somar(4,5) == -1
+    assert subtrair(4, 5) == -1
+
+
 def test_multiplicar():
-    assert somar(3,7) == 21
+    assert multiplicar(3, 7) == 21
+
+
 def test_dividir():
-    assert dividir(8,4) == 2
+    assert dividir(8, 4) == 2
 
 
-# Press the green button in the gutter to run the script.
+# Dia 1 : 100 testes : 0 passaram
+# Dia 2 : 100 testes : 5 passaram
+# Dia 3 : 100 testes : 15 passaram
+# Dia 4 : 100 testes : 30 passaram
+
+# TDD : Desenvolvimento Direcionado pelo Testes
+# - Criar o esqueleto de classes, funções e métodos logo no início da Sprint
+# - Criar pelo 1 teste (feliz) para todas as funções e métodos
+# - Executar todos os testes unitários diariamente para medir o progresso
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print_hi('Jose')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # soma de 2 números
+    resultado = somar(4, 2)
+    print(f'O resultado da soma: {resultado}')
+
+    # subtração de 2 números
+    resultado = subtrair(5, 3)
+    print(f'O resultado da subtração: {resultado}')
+
+    # multiplicação
+    resultado = multiplicar(2, 4)
+    print(f'O resultado da multiplicação: {resultado}')
+
+    # divisão
+    resultado = dividir(9, 8)
+    print(f'O resultado da divisão: {resultado}')
