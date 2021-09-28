@@ -51,6 +51,8 @@ def test_somar_didatico():
     (30, 6, 36),  # teste 6
     (5, 4, 9),  # teste 1
     (3, 2, 5),  # teste 2
+    (3, 2, 5),  # teste 2
+
     (10, 6, 25),  # teste 4
     (20, 6, 26),  # teste 5
     (30, 6, 36),  # teste 6
